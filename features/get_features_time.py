@@ -42,6 +42,7 @@ def convertDate(line, sep=','):
         date_components = _get_date_components(cols[6]) # code the date conversion here
     except ValueError:
         return [None, None, None,None, None, None]
+    print(cols + date_components)
     return ",".join(cols + date_components)
 
 
