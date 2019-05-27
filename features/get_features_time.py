@@ -1,4 +1,12 @@
 import datetime
+import beam
+import argparse
+
+parser = argparse.ArgumentParser()
+parser.add_argument('--gs_input')
+parser.add_argument('--gs_output_bucket')
+known_args, pipeline_args = parser.parse_known_args(argv)
+
 
 
 def _get_date_components(ts):
@@ -31,6 +39,6 @@ def convertDate(line, sep=','):
 
 
 with beam.Pipeline(argv=pipeline_args) as p:
-    lines = p | 'ReadCsvFile' >> beam.io.ReadFromText(args.input)
+    lines = p | 'ReadCsvFile' >> beam.io.ReadFromText(known_args.gs_input)
     lines = lines | 'ConvertDate' >> beam.Map(convertDate)
-    lines | 'WriteCsvFile' >> beam.io.WriteToText(args.output)
+    lines | 'WriteCsvFile' >> beam.io.WriteToText(known_args.gs_output_bucket)
