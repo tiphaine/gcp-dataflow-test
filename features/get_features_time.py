@@ -1,5 +1,5 @@
 import datetime
-import beam
+import apache_beam as beam
 import argparse
 
 parser = argparse.ArgumentParser()
