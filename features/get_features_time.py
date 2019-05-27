@@ -25,7 +25,7 @@ def _get_date_components(ts):
         For example:
             ts = 1554800906499 returns [2019, 04, 09, 11, 15, 2].
     """
-    ts = datetime.datetime.fromtimestamp(ts/1000)
+    ts = datetime.datetime.fromtimestamp(float(ts)/1000)
     _, weeknumber, weekday = ts.isocalendar()
 
     return [
