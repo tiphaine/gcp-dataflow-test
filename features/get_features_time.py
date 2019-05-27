@@ -2,6 +2,9 @@ import datetime
 import apache_beam as beam
 import argparse
 
+from sys import argv
+
+
 parser = argparse.ArgumentParser()
 parser.add_argument('--gs_input')
 parser.add_argument('--gs_output_bucket')
@@ -28,6 +31,7 @@ def _get_date_components(ts):
     return [
         ts.year, ts.month, ts.day,
         ts.hour, weeknumber, weekday]
+
 
 def convertDate(line, sep=','):
     # convert date to desired format
