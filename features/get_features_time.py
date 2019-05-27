@@ -27,10 +27,10 @@ def _get_date_components(ts):
     """
     ts = datetime.datetime.fromtimestamp(float(ts)/1000)
     _, weeknumber, weekday = ts.isocalendar()
+    date_components = [ts.year, ts.month, ts.day, ts.hour, weeknumber, weekday]
 
-    return [
-        ts.year, ts.month, ts.day,
-        ts.hour, weeknumber, weekday]
+    return [str(item) for item in date_components]
+
 
 
 def convertDate(line, sep=','):
@@ -42,7 +42,6 @@ def convertDate(line, sep=','):
         date_components = _get_date_components(cols[6]) # code the date conversion here
     except ValueError:
         return [None, None, None,None, None, None]
-    print(cols + date_components)
     return ",".join(cols + date_components)
 
 
