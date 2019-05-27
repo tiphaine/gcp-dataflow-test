@@ -38,8 +38,10 @@ def convertDate(line, sep=','):
     # Split line into columns, change date format for desired column
     # Rejoin columns into line and return
     cols = line.split(sep)  # change for your column seperator
-    print(cols)
-    date_components = _get_date_components(cols[6]) # code the date conversion here
+    try:
+        date_components = _get_date_components(cols[6]) # code the date conversion here
+    except ValueError:
+        return [None, None, None,None, None, None]
     return ",".join(cols + date_components)
 
 
